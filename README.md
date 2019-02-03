@@ -1,1 +1,1 @@
-# OpenEDX Installation Document
+# OpenEDX Document
