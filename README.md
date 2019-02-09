@@ -10,8 +10,6 @@
    - Configure Docker with a minimum of 2 CPUs and 6GB memory.
 
 ## Docker Installation
-1. **Uninstall old versions**
-
-Older versions of Docker were called `docker`, `docker.io`, or `docker-engine`. Use following command to uninstall them:
-
+1. **Uninstall old versions**\n
+Older versions of Docker were called `docker`, `docker.io`, or `docker-engine`. Use following command to uninstall them:\n
 `$ sudo apt-get remove docker docker-engine docker.io containerd runc`
