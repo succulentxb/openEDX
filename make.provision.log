@@ -1,0 +1,230 @@
+./repo.sh clone
+The [course-discovery] repo is already checked out. Checking for updates.
+From https://github.com/edx/course-discovery
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [credentials] repo is already checked out. Checking for updates.
+From https://github.com/edx/credentials
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [cs_comments_service] repo is already checked out. Checking for updates.
+From https://github.com/edx/cs_comments_service
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [ecommerce] repo is already checked out. Checking for updates.
+From https://github.com/edx/ecommerce
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [edx-e2e-tests] repo is already checked out. Checking for updates.
+From https://github.com/edx/edx-e2e-tests
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [edx-notes-api] repo is already checked out. Checking for updates.
+From https://github.com/edx/edx-notes-api
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [edx-platform] repo is already checked out. Checking for updates.
+From https://github.com/edx/edx-platform
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [xqueue] repo is already checked out. Checking for updates.
+From https://github.com/edx/xqueue
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [edx-analytics-pipeline] repo is already checked out. Checking for updates.
+From https://github.com/edx/edx-analytics-pipeline
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+The [gradebook] repo is already checked out. Checking for updates.
+From https://github.com/edx/gradebook
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+DOCKER_COMPOSE_FILES="-f docker-compose.yml -f docker-compose-host.yml"  bash ./provision.sh
++ RED='\033[0;31m'
++ GREEN='\033[0;32m'
++ YELLOW='\033[0;33m'
++ NC='\033[0m'
++ docker-compose up -d mysql mongo
+Creating network "devstack_default" with the default driver
+Creating volume "devstack_discovery_assets" with default driver
+Creating volume "devstack_edxapp_lms_assets" with default driver
+Creating volume "devstack_edxapp_studio_assets" with default driver
+Creating volume "devstack_elasticsearch_data" with default driver
+Creating volume "devstack_mongo_data" with default driver
+Creating volume "devstack_mysql_data" with default driver
+Creating volume "devstack_devpi_data" with default driver
+Pulling mongo (mongo:3.2.16)...
+3.2.16: Pulling from library/mongo
+065132d9f705: Pull complete
+0804fbd93397: Pull complete
+2017979d193f: Pull complete
+1d21d92a4177: Pull complete
+b63237591b18: Pull complete
+c034b34661ee: Pull complete
+f9199b5efbcc: Pull complete
+42c2318c947c: Pull complete
+3155ef795942: Pull complete
+5d7ad9295b91: Pull complete
+a5c06af7df46: Pull complete
+Pulling mysql (mysql:5.6)...
+5.6: Pulling from library/mysql
+6ae821421a7d: Pull complete
+a9e976e3aa6d: Pull complete
+e3735e44a020: Pull complete
+bfd564e9483f: Pull complete
+df705f26e488: Pull complete
+25097d3ea7b8: Pull complete
+606c1b74fda2: Pull complete
+eda5767f8d3f: Pull complete
+5b57c9a598ba: Pull complete
+57f28f294e2f: Pull complete
+94b29ab4a8ab: Pull complete
+Creating edx.devstack.mysql ... done
+Creating edx.devstack.mongo ... done
++ echo 'Waiting for MySQL'
+Waiting for MySQL
++ docker exec -i edx.devstack.mysql mysql -uroot -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '\''root'\'')'
++ printf .
+.+ sleep 1
++ docker exec -i edx.devstack.mysql mysql -uroot -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '\''root'\'')'
++ printf .
+.+ sleep 1
++ docker exec -i edx.devstack.mysql mysql -uroot -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '\''root'\'')'
++ printf .
+.+ sleep 1
++ docker exec -i edx.devstack.mysql mysql -uroot -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '\''root'\'')'
++ printf .
+.+ sleep 1
++ docker exec -i edx.devstack.mysql mysql -uroot -se 'SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '\''root'\'')'
++ sleep 20
++ echo -e 'MySQL ready'
+MySQL ready
++ echo -e '\033[0;32mCreating databases and users...\033[0m'
+Creating databases and users...
++ docker exec -i edx.devstack.mysql mysql -uroot mysql
++ docker exec -i edx.devstack.mongo mongo
+MongoDB shell version: 3.2.16
+connecting to: test
+connection to 127.0.0.1
+[
+	{
+		"user" : "admin",
+		"pwd" : "password",
+		"roles" : [
+			"root"
+		],
+		"database" : "admin"
+	},
+	{
+		"user" : "cs_comments_service",
+		"pwd" : "password",
+		"roles" : [
+			"readWrite"
+		],
+		"database" : "cs_comments_service"
+	},
+	{
+		"user" : "edxapp",
+		"pwd" : "password",
+		"roles" : [
+			"readWrite"
+		],
+		"database" : "edxapp"
+	}
+]
+Successfully added user: { "user" : "admin", "roles" : [ "root" ] }
+Successfully added user: { "user" : "cs_comments_service", "roles" : [ "readWrite" ] }
+Successfully added user: { "user" : "edxapp", "roles" : [ "readWrite" ] }
+bye
++ ./provision-lms.sh
+++ apps=(lms studio)
+++ ./load-db.sh edxapp
+Loading the edxapp database...
+Finished loading the edxapp database!
+++ ./load-db.sh edxapp_csmh
+Loading the edxapp_csmh database...
+Finished loading the edxapp_csmh database!
+++ for app in '"${apps[@]}"'
+++ docker-compose -f docker-compose.yml -f docker-compose-host.yml up -d lms
+Creating volume "devstack_credentials_node_modules" with default driver
+Creating volume "devstack_discovery_node_modules" with default driver
+Creating volume "devstack_ecommerce_node_modules" with default driver
+Creating volume "devstack_edxapp_node_modules" with default driver
+Creating volume "devstack_gradebook_node_modules" with default driver
+Pulling devpi (edxops/devpi:latest)...
+latest: Pulling from edxops/devpi
+e0a742c2abfd: Pull complete
+1507ad3dd17e: Pull complete
+dc6f0d824617: Pull complete
+4f7a5649a30e: Pull complete
+672363445ad2: Pull complete
+392105037c93: Pull complete
+194b0a149b55: Pull complete
+8f9df4d8f2b4: Pull complete
+c92bdb69e5b8: Pull complete
+398b247d5317: Pull complete
+8acf271f8f5e: Pull complete
+d89a64949bb6: Pull complete
+1b58e172b12a: Pull complete
+51f311150a05: Pull complete
+fea52de9199a: Pull complete
+Pulling memcached (memcached:1.4.24)...
+1.4.24: Pulling from library/memcached
+237d5fcd25cf: Pull complete
+a3ed95caeb02: Pull complete
+f3eaad33e4d2: Pull complete
+49f69ecbc693: Pull complete
+9e62aa1ed4f0: Pull complete
+31342a34ef9f: Pull complete
+Pulling lms (edxops/edxapp:latest)...
+latest: Pulling from edxops/edxapp
+e0a742c2abfd: Already exists
+1507ad3dd17e: Already exists
+dc6f0d824617: Already exists
+4f7a5649a30e: Already exists
+672363445ad2: Already exists
+392105037c93: Already exists
+194b0a149b55: Already exists
+8f9df4d8f2b4: Already exists
+c92bdb69e5b8: Already exists
+8fde27c34719: Pull complete
+45b1fdc61ea3: Pull complete
+eb26676520bc: Pull complete
+1d539b98d3d2: Pull complete
+687bbf610701: Pull complete
+edx.devstack.mysql is up-to-date
+Creating edx.devstack.devpi ... 
+Creating edx.devstack.devpi     ... done
+Creating edx.devstack.memcached ... done
+Creating edx.devstack.lms       ... done
+++ for app in '"${apps[@]}"'
+++ docker-compose -f docker-compose.yml -f docker-compose-host.yml up -d studio
+edx.devstack.mysql is up-to-date
+edx.devstack.devpi is up-to-date
+edx.devstack.mongo is up-to-date
+edx.devstack.memcached is up-to-date
+Creating edx.devstack.studio ... done
+++ docker-compose exec lms bash -c 'source /edx/app/edxapp/edxapp_env && cd /edx/app/edxapp/edx-platform && NO_PYTHON_UNINSTALL=1 paver install_prereqs'
+---> pavelib.prereqs.install_prereqs
+---> pavelib.prereqs.install_node_prereqs
+
+> node-sass@4.7.2 install /edx/app/edxapp/edx-platform/node_modules/node-sass
+> node scripts/install.js
+
+Downloading binary from https://github.com/sass/node-sass/releases/download/v4.7.2/linux-x64-57_binding.node
+Download complete
+Binary saved to /edx/app/edxapp/edx-platform/node_modules/node-sass/vendor/linux-x64-57/binding.node
+Caching binary to /root/.npm/node-sass/4.7.2/linux-x64-57_binding.node
+
+> node-sass@4.7.2 postinstall /edx/app/edxapp/edx-platform/node_modules/node-sass
+> node scripts/build.js
+
+Binary found at /edx/app/edxapp/edx-platform/node_modules/node-sass/vendor/linux-x64-57/binding.node
+Testing binary
+Binary is fine
+added 1712 packages in 265.023s
+Successfully installed NPM packages. Log found at /edx/app/edxapp/edx-platform/test_root/log/npm-install.log
+---> pavelib.prereqs.install_python_prereqs
+---> pavelib.prereqs.uninstall_python_packages
+NO_PYTHON_UNINSTALL is set. No attempts will be made to uninstall old Python libs.
+pip install -q --disable-pip-version-check --exists-action w -r requirements/edx/development.txt
