@@ -33,7 +33,7 @@
    7. Verify that Docker CE is installed correctly by running the `hello-world` image  
       `$ sudo docker run hello-world`  
       Docker has been installed correctly if you can see the following output:  
-      ```
+      <pre>
       Hello from Docker!
       This message shows that your installation appears to be working correctly.
 
@@ -41,7 +41,7 @@
 
       For more examples and ideas, visit:
       https://docs.docker.com/get-started/
-      ```  
+      </pre>  
 ## Install docker-compose  
 To install `docker-compose`, follow these steps.  
 1. **Download docker-compose to `/usr/local/bin/`**  
@@ -65,6 +65,12 @@ To install Devstack, follow these steps.
    ```  
 2. Use make to check out the correct branch  
    `make dev.checkout`  
-3. Clone the Open edX service repoisitories  
+3. Clone the Open edX service repositories  
    `make dev.clone`  
-   Use the command will clone several repos into `~/openEDX` directory
+   Use the command will clone several repos into `~/openEDX` directory  
+   > You may encounter the following problem when cloning repositories
+   > <pre> error: RPC failed; curl 18 transfer closed with outstanding read data remaining  
+   >  fatal: The remote end hung up unexpectedly
+   >  fatal: early EOF
+   >  fatal: index-pack failed </pre>
+   
