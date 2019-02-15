@@ -69,8 +69,9 @@ To install Devstack, follow these steps.
    `make dev.clone`  
    Use the command will clone several repos into `~/openEDX` directory  
    > You may encounter the following problem when cloning repositories
-   > <pre> error: RPC failed; curl 18 transfer closed with outstanding read data remaining  
-   >  fatal: The remote end hung up unexpectedly
-   >  fatal: early EOF
-   >  fatal: index-pack failed </pre>
+   > <pre>error: RPC failed; curl 18 transfer closed with outstanding read data remaining  
+   > fatal: The remote end hung up unexpectedly
+   > fatal: early EOF
+   > fatal: index-pack failed </pre>
+   > The reason of the problem is poor network connection
    
