@@ -68,9 +68,18 @@ To install Devstack, follow these steps.
 3. Clone the Open edX service repositories  
    `make dev.clone`  
    Use the command will clone several repos into `~/openEDX` directory  
-   > You may encounter the following problem when cloning repositories
-   > <pre> error: RPC failed; curl 18 transfer closed with outstanding read data remaining  
-   >  fatal: The remote end hung up unexpectedly
-   >  fatal: early EOF
-   >  fatal: index-pack failed </pre>
+   > You may encounter the following problem when cloning repositories  
+   > <pre>error: RPC failed; curl 18 transfer closed with outstanding read data remaining  
+   > fatal: The remote end hung up unexpectedly  
+   > fatal: early EOF  
+   > fatal: index-pack failed</pre>  
+   > It is the poor network connection with github.com on Aliyun that cause the error.  
+   > To solve the error, we need use a proxy: [proxy settings](https://www.jianshu.com/p/b1f6e6944f94)  
+4. Deploy the platform  
+   `make dev.provision`  
+   > Step 3 and Step 4 may take a long time to process, please be patient.  
+   > If error happens during steps, please try again.
+5. Start service  
+   `make dev.up`  
+   Then we could get platform service from http://47.102.41.195:18000/ and http://47.102.41.195:18010/ (our server ip is 47.102.41.195)  
    
