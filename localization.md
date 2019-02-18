@@ -74,17 +74,17 @@
 
 ### 学生用户站点  
    目前学生用户站点运行在18000端口上  
-   | 站点描述 | title | url | 中文化概况 | 未中文化部分 |  
-   | ------- | ----- | --- | --------- | --------- |  
-   | 课程主页面 | Your Platform Name Here | host:18000/ or host:18000/cources | 基本实现 | title等个别部分 |  
-   | 课程介绍页面 |  edX Demonstration Course | host:18000/courses/课程信息参数/about | 基本实现 | title等个别部分、英文课程信息仍显示英文 |  
-   | 我的课程页面 | 课程面板 | host:18000/dashboard | 基本实现 | title后缀 |  
-   | 用户资料页面 | 学员资料 | host:18000/u/username | 部分实现 | title后缀、账户设置页面跳转部分 |  
-   | 账户设置页面 | 账户设置 | host:18000/account/settings | 部分实现 | title后缀、部分设置字段、删除账户信息 |  
-   | 登出页面 | 已注销 | host:18000/logout | 基本实现 | title后缀 |  
-   | 登录页面 | 登录或注册 | host:18000/login | 部分实现 | title后缀、页面内标题、控件placeholder |  
-   | 注册页面 | 登录或注册 | host:18000/register | 部分实现 | title后缀、页面内标题、注册条款 |  
-   | 课程页面 | (根据课程信息而定) | host:18000/courses/course-课程信息参数 | 基本实现 | 部分小标题 |  
+   | 站点描述 | title | url | 中文化概况 | 未中文化部分 |
+   | ------- | ----- | --- | --------- | --------- |
+   | 课程主页面 | Your Platform Name Here | host:18000/ or host:18000/cources | 基本实现 | title等个别部分 |
+   | 课程介绍页面 |  edX Demonstration Course | host:18000/courses/课程信息参数/about | 基本实现 | title等个别部分、英文课程信息仍显示英文 |
+   | 我的课程页面 | 课程面板 | host:18000/dashboard | 基本实现 | title后缀 |
+   | 用户资料页面 | 学员资料 | host:18000/u/username | 部分实现 | title后缀、账户设置页面跳转部分 |
+   | 账户设置页面 | 账户设置 | host:18000/account/settings | 部分实现 | title后缀、部分设置字段、删除账户信息 |
+   | 登出页面 | 已注销 | host:18000/logout | 基本实现 | title后缀 |
+   | 登录页面 | 登录或注册 | host:18000/login | 部分实现 | title后缀、页面内标题、控件placeholder |
+   | 注册页面 | 登录或注册 | host:18000/register | 部分实现 | title后缀、页面内标题、注册条款 |
+   | 课程页面 | (根据课程信息而定) | host:18000/courses/course-课程信息参数 | 基本实现 | 部分小标题 |
 
 
 ### 教师用户站点  
