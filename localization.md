@@ -105,3 +105,8 @@
    | 课程团队页面 | 课程团队设置 | host:18010/course_team/course-课程信息参数 | 实现 | 暂无 |  
    | 组配置页面 | 组配置 | host:18010/group_configurations/course-课程信息参数 | 部分实现 | 添加组部分 |  
    | 高级设置 | 高级设置 | host:18010/advanced/course-课程信息参数 | 实现 | 暂无 | 
+
+   | First Header  | Second Header |
+   | ------------- | ------------- |
+   | Content Cell  | Content Cell  |
+   | Content Cell  | Content Cell  |
