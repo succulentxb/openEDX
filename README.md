@@ -81,5 +81,5 @@ To install Devstack, follow these steps.
    > If error happens during steps, please try again.
 5. Start service  
    `make dev.up`  
-   Then we could get platform service from http://47.102.41.195:18000/ and http://47.102.41.195:18010/ (our server ip is 47.102.41.195)  
+   Then we could get platform service from http://host:18000/ and http://host:18010/ (host is server public ip)  
    
