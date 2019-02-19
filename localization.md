@@ -48,12 +48,14 @@
 
 ## 配置superuser  
    edxapp为我们提供了如下几个用户的账号密码:  
-   | email | password | is_superuser | is_staff |  
-   | ----- | -------- | ------------ | -------- |  
-   | staff@example.com | edx | false | true |  
-   | verified@example.com | edx | false | false |  
-   | audit@example.com | edx | false | false |  
+
+   | email | password | is_superuser | is_staff |
+   | ----- | -------- | ------------ | -------- |
+   | staff@example.com | edx | false | true |
+   | verified@example.com | edx | false | false |
+   | audit@example.com | edx | false | false |
    | honor@example.com | edx | false | false |  
+
    可以看到，账号密码对我们可见的几个预装用户都没有superuser权限，无superuser权限也就意味着我们没有在线操作站点的最高权限  
    为此我们需要为原本的员工账户staff添加superuser权限  
    操作如下:  
