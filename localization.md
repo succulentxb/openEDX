@@ -136,3 +136,15 @@
    1. **locaization不彻底**. 这是网站当前最主要的问题，不同语言混杂，会在用户使用时带来较差的用户体验。但是解决该问题也是接下来工作中最困难的一部分，目前一种可行的方案是对项目源码进行分析，对于模版中写死的部分进行更改，同样对于代码中写死的部分也需要更改。  
    2. **部分配置项存在问题**. 对于当前网站的存在的诸如部分静态资源无法加载等问题，可能是在源码中的某些配置项存在问题，比如重定向时会将q请求直接打在localhost而造成问题，这些问题只需在项目中定位后修改即可。  
    3. **站点前端美观度不足**. 这个问题可以与解决第一个问题时同步进行，可以在页面中加入一些样式来调整页面外观，但是这样的效果有限。如果需要引入其他较为成熟的前端框架，则可能需要对项目进行较大规模的重构。另外open edX也提供了其他主题供建站者选择使用，也在一定程度上可以在美观度问题上有所改观，但同样可能效果有限。  
+
+## 解决错误请求localhost的问题  
+   - 问题描述：在open edX中的用户未登录时会重定向至登录页面，但登录页面会请求localhost从而导致出现问题  
+   - 问题定位：配置文件未正确修改。直接安装的devstack中重定向url依赖于cms.env.json中的LMS_ROOT_URL，但是docker版本的会依赖于devstack_docker.py中的LMS_BASE配置  
+   - 解决方法：  
+      1. 进入工作目录  
+      `$ cd /root/openEDX/devstack`  
+      2. 启动Studio对应容器的bash  
+      `$ docker exec -it edx.devstack.studio /bin/bash`  
+      3. 进入`devstack_docker.py`文件所在目录  
+      `$ cd /edx/app/edxapp/edx-platform/cms/envs`  
+      4. 使用`vim`等编辑器将`devstack_docker.py`文件中的`LMS_BASE`, `CMS_BASE`中的`localhost`替换为服务器ip  
