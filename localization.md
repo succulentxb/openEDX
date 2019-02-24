@@ -138,12 +138,12 @@
    3. **站点前端美观度不足**. 这个问题可以与解决第一个问题时同步进行，可以在页面中加入一些样式来调整页面外观，但是这样的效果有限。如果需要引入其他较为成熟的前端框架，则可能需要对项目进行较大规模的重构。另外open edX也提供了其他主题供建站者选择使用，也在一定程度上可以在美观度问题上有所改观，但同样可能效果有限。  
 
 ## 解决错误请求localhost的问题  
-   - 问题描述：在open edX中的用户未登录时会重定向至登录页面，但登录页面会请求localhost从而导致出现问题  
-   - 问题定位：配置文件未正确修改。直接安装的devstack中重定向url依赖于cms.env.json中的LMS_ROOT_URL，但是docker版本的会依赖于devstack_docker.py中的LMS_BASE配置  
+   - 问题描述：在`open edX`中的用户未登录时会重定向至登录页面，但登录页面会请求`localhost`从而导致出现问题  
+   - 问题定位：配置文件未正确修改。直接安装的`devstack`中重定向url依赖于`cms.env.json`中的`LMS_ROOT_URL`，但是`docker`版本的会依赖于`devstack_docker.py`中的`LMS_BASE`配置  
    - 解决方法：  
       1. 进入工作目录  
       `$ cd /root/openEDX/devstack`  
-      2. 启动Studio对应容器的bash  
+      2. 启动Studio对应容器的`bash`  
       `$ docker exec -it edx.devstack.studio /bin/bash`  
       3. 进入`devstack_docker.py`文件所在目录  
       `$ cd /edx/app/edxapp/edx-platform/cms/envs`  
