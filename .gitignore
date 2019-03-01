@@ -2,3 +2,5 @@
 .idea/
 README-zh.md
 .DS_Store
+devstack/
+edx-platform/
