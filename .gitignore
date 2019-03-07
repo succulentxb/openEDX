@@ -1,6 +1,4 @@
-.vscode/
-.idea/
-README-zh.md
-.DS_Store
-devstack/
-edx-platform/
+/*
+!.gitignore
+!localization.md
+!README.md

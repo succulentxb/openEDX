@@ -148,3 +148,57 @@
       3. 进入`devstack_docker.py`文件所在目录  
       `$ cd /edx/app/edxapp/edx-platform/cms/envs`  
       4. 使用`vim`等编辑器将`devstack_docker.py`文件中的`LMS_BASE`, `CMS_BASE`中的`localhost`替换为服务器ip  
+      
+## 右下角openedX链接配置修改  
+   - 需求描述：`lms`服务中`footer`右侧有openedX的链接，可自行修改配置  
+   - 配置位置：`edx-platform/lms/envs/common.py`中的`FOOTER_OPENEDX_URL`和`FOOTER_OPENEDX_LOGO_IMAGE`配置项  
+   
+## `lms`服务`footer`中的链接配置  
+   - 需求描述：`lms`服务`footer`中去除"联系我们"等链接  
+   - 修改位置：`edx-platform/lms/djangoapps/branding/api.py`中`_footer_navigation_links()`函数，修改如下  
+      ```python
+      def _footer_navigation_links(language=settings.LANGUAGE_CODE):
+      """Return the navigation links to display in the footer. """
+      platform_name = configuration_helpers.get_value('platform_name', settings.PLATFORM_NAME)
+      links = [
+          # ("about", (marketing_link("ABOUT"), _("About"))),
+          ("enterprise", (
+                  marketing_link("ENTERPRISE"),
+                  _(u"{platform_name} for Business").format(platform_name=platform_name)
+          )),
+          # ("blog", (marketing_link("BLOG"), _("Blog"))),
+          ("help-center", (settings.SUPPORT_SITE_LINK, _("Help Center"))),
+          ("contact", (reverse("support:contact_us"), _("Contact"))),
+          ("careers", (marketing_link("CAREERS"), _("Careers"))),
+          # ("donate", (marketing_link("DONATE"), _("Donate"))),
+      ]
+     
+      # localize: remove blog and donate in footer
+      # if language == settings.LANGUAGE_CODE:
+      #     position = _find_position_of_link(links, 'blog')
+      #     links.insert(position, ("news", (marketing_link("NEWS"), _("News"))))
+     
+      return [
+          {
+              "name": link_name,
+              "title": link_title,
+              "url": link_url,
+          }
+          for link_name, (link_url, link_title) in links
+          if link_url and link_url != "#"
+      ]
+      ```
+      
+## 去除`Debug Toolbar`  
+   - 需求描述：网站初始情况下会显示`toolbar`用于debug，现需将其隐去  
+   - 修改位置：`edx-platform/lms/envs/devstack.py`中`should_show_debug_toolbar()`  
+   ```python
+   # to hide toolbar
+   def should_show_debug_toolbar(request):
+       return False
+       # We always want the toolbar on devstack unless running tests from another Docker container
+       # if request.get_host().startswith('edx.devstack.lms:'):
+       #     return False
+       # return True
+   ```
+   

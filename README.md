@@ -1,4 +1,4 @@
-# OpenEDX Installation Document
+$DEVSTACK_WORKSPACE# OpenEDX Installation Document
 
 ## Installation Prerequisites
 
