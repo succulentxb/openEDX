@@ -202,3 +202,11 @@
        # return True
    ```
    
+## 
+
+## 页面内容不正常显示问题
+   - 问题描述：课程内容修改之后，内容显示不正常  
+   - 问题定位：docker版本openEDX在debug模式下写db异常  
+   - 解决方案：在setting配置中修改 DEBUG=False  
+   
+   
